@@ -16,15 +16,13 @@ public class GithubProvider {
 
         RequestBody body = RequestBody.create(mediaType, JSON.toJSONString(accessTokenDTO));
         Request request = new Request.Builder()
-                .url("https://github.com/login/oauth/access_token")  //
-                //.url("https://github.com/login/oauth/access_token?client_id="+accessTokenDTO.getClient_id()+"&client_secret="+accessTokenDTO.getClient_secret()+"&code="+accessTokenDTO.getCode()+"&redirect_uri="+accessTokenDTO.getRedirect_uri()+"&state="+accessTokenDTO.getState())
+                .url("https://github.com/login/oauth/access_token")
                 .post(body)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();//
             String token = string.split("&")[0].split("=")[1];
-            System.out.println(string);
             return token;
         } catch (IOException e) {
             e.printStackTrace();
