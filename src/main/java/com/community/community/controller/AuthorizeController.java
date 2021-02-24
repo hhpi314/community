@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
@@ -35,7 +37,8 @@ public class AuthorizeController {
     @GetMapping("/callback")  //确保来自"/callback"的http get请求被映射到callback()方法
     public String callback(@RequestParam(name="code")String code,    //参数绑定
                            @RequestParam(name="state")String state,
-                           HttpServletRequest request){
+                           HttpServletRequest request,
+                           HttpServletResponse response){
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setCode(code);
@@ -46,13 +49,14 @@ public class AuthorizeController {
         GithubUser githubUser = githubProvider.getUser(accessToken);
         if(githubUser!=null){//登陆成功，完善cookie和session
             User user = new User();
-            user.setToken(UUID.randomUUID().toString());//UUID通用唯一识别码
+            String token = UUID.randomUUID().toString();//UUID生成token
+            user.setToken(token);//UUID通用唯一识别码
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userRepository.save(user);
-            request.getSession().setAttribute("user",githubUser);
+            response.addCookie(new Cookie("token", token));//把自己写的token放到cookie中
             return "redirect:/";
         }else{//失败，重新登录
             return "redirect:/";//跳转回首页
