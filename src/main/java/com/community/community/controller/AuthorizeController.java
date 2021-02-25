@@ -3,7 +3,7 @@ package com.community.community.controller;
 import com.community.community.dto.AccessTokenDTO;
 import com.community.community.dto.GithubUser;
 import com.community.community.mapper.UserMapper;
-import com.community.community.mapper.UserRepository;
+import com.community.community.repository.UserRepository;
 import com.community.community.model.User;
 import com.community.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
-        if(githubUser!=null){//登陆成功，完善cookie和session
+        if(githubUser!=null && githubUser.getId()!=null){//登陆成功，完善cookie和session
             User user = new User();
             String token = UUID.randomUUID().toString();//UUID生成token
             user.setToken(token);//UUID通用唯一识别码

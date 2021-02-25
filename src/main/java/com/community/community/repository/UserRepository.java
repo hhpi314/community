@@ -1,4 +1,4 @@
-package com.community.community.mapper;
+package com.community.community.repository;
 
 import com.community.community.model.User;
 import org.springframework.data.repository.CrudRepository;
