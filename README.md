@@ -14,6 +14,8 @@
 
 [okhttp](https://square.github.io/okhttp/)
 
+[Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
+
 ## 资料
 参考社区：[Elastic中文社区](https://elasticsearch.cn/explore)
 
