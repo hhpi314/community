@@ -16,6 +16,8 @@
 
 [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)
 
+[Spring Dev Tool](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-boot-devtools)
+
 ## 资料
 参考社区：[Elastic中文社区](https://elasticsearch.cn/explore)
 
@@ -33,6 +35,8 @@
 [maven仓库](https://mvnrepository.com/)
 
 [H2数据库](https://www.h2database.com/html/main.html)
+
+[Live Reload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei/related)
 
 
 
