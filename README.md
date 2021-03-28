@@ -29,6 +29,8 @@
 [MyBatis Spring Boot Stater](https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
 
 [FlyWay](https://flywaydb.org/documentation/getstarted/firststeps/maven)
+
+[拦截器Interceptor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/HandlerInterceptor.html)
 ## 工具
 
 [时序图工具vp](https://www.visual-paradigm.com/cn/)
