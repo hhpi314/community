@@ -18,6 +18,7 @@
 
 [Spring Dev Tool](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#using-boot-devtools)
 
+[JQuery](https://jquery.com/)
 ## 资料
 参考社区：[Elastic中文社区](https://elasticsearch.cn/explore)
 
