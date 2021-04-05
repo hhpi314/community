@@ -78,4 +78,13 @@ public class QuestionService {
         paginationDTO.setQuestions(questionDTOList);//问题列表
         return paginationDTO;
     }
+
+    public QuestionDTO getById(Long id) {
+        Question question = questionRepository.findById(id).get();//根据id获取问题信息
+        QuestionDTO questionDTO = new QuestionDTO();
+        BeanUtils.copyProperties(question,questionDTO);//拷贝内容到questionDTO
+        User user = userRepository.findById(question.getCreator()).get();//获取user
+        questionDTO.setUser(user);
+        return questionDTO;
+    }
 }
