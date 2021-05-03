@@ -2,6 +2,8 @@ package com.community.community.service;
 
 import com.community.community.dto.PaginationDTO;
 import com.community.community.dto.QuestionDTO;
+import com.community.community.exception.CustomizeErrorCode;
+import com.community.community.exception.CustomizeException;
 import com.community.community.mapper.QuestionMapper;
 import com.community.community.mapper.UserMapper;
 import com.community.community.model.Question;
@@ -82,6 +84,9 @@ public class QuestionService {
 
     public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);//根据id获取问题信息
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);//拷贝内容到questionDTO
         User user = userMapper.selectByPrimaryKey(question.getCreator());//获取user
@@ -105,7 +110,10 @@ public class QuestionService {
             updateQuestion.setTitle(question.getTitle());
             updateQuestion.setDescription(question.getDescription());
             updateQuestion.setTag(question.getTag());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if(updated!=1){//更新不成功，更新的问题被删了，抛出异常
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
 
     }
