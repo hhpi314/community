@@ -3,7 +3,6 @@ package com.community.community.controller;
 import com.community.community.dto.QuestionDTO;
 import com.community.community.model.Question;
 import com.community.community.model.User;
-import com.community.community.repository.QuestionRepository;
 import com.community.community.service.QuestionService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;

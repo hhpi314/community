@@ -10,6 +10,11 @@
 
 [MyBatis文档](https://mybatis.org/mybatis-3/zh/index.html)
 
+[MyBatis Generator](http://mybatis.org/generator/)
+```bash
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
+
 [MYSQL菜鸟教程](https://www.runoob.com/mysql/mysql-insert-query.html)
 
 [okhttp](https://square.github.io/okhttp/)
