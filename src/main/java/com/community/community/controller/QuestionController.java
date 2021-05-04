@@ -17,6 +17,8 @@ public class QuestionController {
     public String question(@PathVariable(name = "id")Long id,
                            Model model){
         QuestionDTO questionDTO = questionService.getById(id);//根据问题id获取question，
+        //累加阅读数
+        questionService.incView(id);
         model.addAttribute("question",questionDTO);//同时把问题传到html页面上去
         return "question";
     }

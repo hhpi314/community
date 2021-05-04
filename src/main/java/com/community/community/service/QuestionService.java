@@ -4,6 +4,7 @@ import com.community.community.dto.PaginationDTO;
 import com.community.community.dto.QuestionDTO;
 import com.community.community.exception.CustomizeErrorCode;
 import com.community.community.exception.CustomizeException;
+import com.community.community.mapper.QuestionExtMapper;
 import com.community.community.mapper.QuestionMapper;
 import com.community.community.mapper.UserMapper;
 import com.community.community.model.Question;
@@ -21,6 +22,8 @@ import java.util.List;
 public class QuestionService {
     @Autowired
     private  QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
     public PaginationDTO list(Integer page, Integer size) {
@@ -116,5 +119,12 @@ public class QuestionService {
             }
         }
 
+    }
+
+    public void incView(Long id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
